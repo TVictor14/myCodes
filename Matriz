@@ -1,0 +1,174 @@
+import random
+
+def programa():
+    sair = False
+    while (not sair == True):
+
+        print("Programa Começou!")
+
+        print("1- Para gerar a matriz a ser verificada")
+        print("2- Para sair")
+        print()
+        opcao = int(input("Entre com a opcao:"))
+
+        if opcao == 1:
+            linhas = int(input("Entre com o número de linhas da matriz: "))
+            colunas = int(input("Entre com o número de colunas da matriz: "))
+            matriz1 = gerar_matriz(linhas, colunas)
+            menu(matriz1)
+        elif opcao == 2:
+            print("Finalizando Programa")
+            input()
+            sair = True
+
+def menu(matriz):
+    sair = False
+    while (not sair == True):
+
+        print()
+        print("1- Imprimir a matriz")
+        print("2- Verificar porcentagem de números Pares e Impares da Matriz")
+        print("3- Verificar porcentagem de números Pares e Impares de uma linha da Matriz")
+        print("4- Verificar a ocorrencia de um número na Matriz")
+        print("5- Total de números da Matriz")
+        print("6- Sair do programa")
+        print()
+        opcao = int(input("Entre com a opção: "))
+
+        if opcao == 1:
+            imprimir_matriz(matriz)
+        elif opcao == 2:
+            verificar_matriz(matriz)
+        elif opcao == 3:
+            verificar_linha(matriz)
+        elif opcao == 4:
+            verificar_num(matriz)
+        elif opcao == 5 :
+            print("Total de números da matriz: {}".format(len(matriz) * len(matriz[0])))
+        elif opcao == 6:
+            sair = True
+        else:
+            print("Opcao inválida")
+    input()
+    return
+
+def gerar_matriz(num_linhas, num_colunas):
+
+    matriz = []
+
+    for i in range(num_linhas):
+        matriz_linha = []
+        for j in range(num_colunas):
+            matriz_linha.append(random.randrange(1,100))
+        matriz.append(matriz_linha)
+    return matriz
+
+def imprimir_matriz(matriz):
+    print()
+
+    linhas = len(matriz)
+    colunas = len(matriz[0])
+
+    for i in range(linhas):
+        for j in range(colunas):
+            if (j == colunas - 1):
+                print("{}".format(matriz[i][j]))
+            else:
+                print("{}".format(matriz[i][j]), end=" ")
+    print()
+    print("Total de números da matriz: {}".format(linhas*colunas))
+
+    input()
+
+def verificar_matriz(matriz):
+
+    num_par = 0
+    num_impar = 0
+    linhas = len(matriz)
+    colunas = len(matriz[0])
+
+    total_numeros = linhas*colunas
+
+    for i in range(linhas):
+        for j in range(colunas):
+            if (matriz[i][j] % 2 == 0):
+                num_par += 1
+            elif (matriz[i][j] % 2 != 0):
+                num_impar += 1
+    porc_par = num_par*100/total_numeros
+    porc_impar = num_impar*100 / total_numeros
+
+
+    print("Verificando total de números impares e pares da Matriz")
+    print("Total de numeros pares: {}\n"
+         "Total de numeros impares: {}\n"
+         "Porcentagem de números pares: {:.2f}\n"
+         "Porcentagem de números ímpares: {:.2f}\n"
+         "Total de números: {}"
+         .format(num_par,
+                 num_impar,
+                 porc_par,
+                 porc_impar,
+                 total_numeros))
+    input()
+
+def verificar_linha(matriz):
+    print()
+
+    num_par = 0
+    num_impar = 0
+    total_linhas = len(matriz)
+    total_colunas = len(matriz[0])
+
+    linha = int(input("Digite o numero da linha {} entre {} ".format(total_linhas,total_colunas)))
+
+    for j in range(total_colunas):
+        if (matriz[linha-1][j] % 2 == 0):
+            num_par += 1
+        elif (matriz[linha-1][j] % 2 != 0):
+            num_impar += 1
+    porc_par = num_par*100/total_colunas
+    porc_impar = num_impar*100/total_colunas
+    print("Verificando o total de números pares e impares da linha")
+    print("Na linha {}\n" 
+         "Total de numeros pares: {}\n"
+         "Total de numeros impares: {}\n"
+         "Porcentagem de números pares: {:.2f}\n"
+         "Porcentagem de números ímpares: {:.2f}\n"
+         "Total de colunas da linha: {}"
+         .format(linha,
+                 num_par,
+                 num_impar,
+                 porc_par,
+                 porc_impar,
+                 total_colunas))
+    input()
+
+def verificar_num(matriz):
+    
+    num_igual = 0
+
+    linhas = len(matriz)
+    colunas = len(matriz[0])
+    total_numeros = linhas*colunas
+
+    numero = int(input("Entre com o número para verificar: "))
+
+    for i in range(linhas):
+        for j in range(colunas):
+            if (matriz[i][j] == numero):
+                num_igual += 1
+
+    porc_igual = num_igual*100/total_numeros
+
+    print("O número {} foi verificado \n" 
+         "Total de aparições: {}\n"
+         "Porcentagem de números iguais: {:.2f}\n"
+         "Total de números: {}"
+         .format(numero,
+                 num_igual,
+                 porc_igual,total_numeros))
+    input()
+
+if __name__ == '__main__':
+    programa()
