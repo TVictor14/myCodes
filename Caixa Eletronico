@@ -14,7 +14,7 @@ def programa():
             elif (saque >= cedulas[3]):
                 saque -= cedulas[3]
                 saida.append(cedulas[3])
-            elif (saque >= cedulas[2]) and (saque % 50 == 0):
+            elif (saque >= cedulas[2]) and (saque % cedulas[2] == 0):
                 saque -= cedulas[2]
                 saida.append(cedulas[2])
             elif (saque >= cedulas[1]) and (saque % cedulas[1] == 0 or saque % 7 == 0) or (saque >= 10):
