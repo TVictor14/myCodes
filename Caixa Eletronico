@@ -2,14 +2,19 @@ import collections
 def programa():
     verdade = True
     while verdade:
-        cedulas = [2,5,50]
+        cedulas = [2,5,50,100]
         saida = []
         saque = int(input("Entre com o valor do saque: "))
-
+        mesagem_erro = "saque inválido"
         nao_divisivel = False
         while nao_divisivel == False:
-
-            if (saque >= cedulas[2]):
+            if saque == 3:
+                saida.append(mesagem_erro)
+                nao_divisivel = True
+            elif (saque >= cedulas[3]):
+                saque -= cedulas[3]
+                saida.append(cedulas[3])
+            elif (saque >= cedulas[2]) and (saque % 50 == 0):
                 saque -= cedulas[2]
                 saida.append(cedulas[2])
             elif (saque >= cedulas[1]) and (saque % cedulas[1] == 0 or saque % 7 == 0) or (saque >= 10):
