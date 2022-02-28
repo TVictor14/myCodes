@@ -5,11 +5,11 @@ def programa():
         cedulas = [2,5,50,100]
         saida = []
         saque = int(input("Entre com o valor do saque: "))
-        mesagem_erro = "saque inválido"
+        messagem_erro = "saque inválido"
         nao_divisivel = False
         while nao_divisivel == False:
             if saque == 3:
-                saida.append(mesagem_erro)
+                saida.append(messagem_erro)
                 nao_divisivel = True
             elif (saque >= cedulas[3]):
                 saque -= cedulas[3]
