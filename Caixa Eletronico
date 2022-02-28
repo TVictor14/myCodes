@@ -8,7 +8,7 @@ def programa():
         messagem_erro = "saque inválido"
         nao_divisivel = False
         while nao_divisivel == False:
-            if saque == 3:
+            if (saque == 3 and saque == 1):
                 saida.append(messagem_erro)
                 nao_divisivel = True
             elif (saque >= cedulas[3]):
