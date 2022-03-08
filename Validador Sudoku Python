@@ -1,0 +1,93 @@
+def sudoku():
+
+    sequencia = "123456789"
+    sudoku_valido = True
+    tabuleiro = [[1, 5, 2, 4, 8, 9, 3, 7, 6],
+                [7, 3, 9, 2, 5, 6, 8, 4, 1],
+                [4, 6, 8, 3, 7, 1, 2, 9, 5],
+                [3, 8, 7, 1, 2, 4, 6, 5, 9],
+                [5, 9, 1, 7, 6, 3, 4, 2, 8],
+                [2, 4, 6, 8, 9, 5, 7, 1, 3],
+                [9, 1, 4, 6, 3, 7, 5, 8, 2],
+                [6, 2, 5, 9, 4, 8, 1, 3, 7],
+                [8, 7, 3, 5, 1, 2, 9, 6, 4]]
+
+
+    #Válidar Coluna e linha
+    for i in range(9):
+
+        linha = []
+        linha_sudoku = []
+        coluna = []
+        coluna_sudoku = []
+
+
+        for j in range(9):
+
+            linha = tabuleiro[i]
+            coluna.append(tabuleiro[j][i])
+
+        linha_sudoku.append(linha)
+        linha2_sudoku = Ordena_linha(linha_sudoku)
+
+        coluna_sudoku.append(coluna)
+        coluna2_sudoku = Ordena_linha(coluna_sudoku)
+
+
+        if linha2_sudoku != sequencia:
+            print(linha_sudoku)
+            print("Linha not ok")
+            sudoku_valido = False
+        if coluna2_sudoku != sequencia:
+            print(coluna_sudoku)
+            print("Coluna not ok")
+            sudoku_valido = False
+    if sudoku_valido == True:
+        print("Linhas Ok")
+        print("Colunas Ok")
+
+    # Válidar quadrante
+    for k in range(1,9,3):
+        for y in range(0,8,3):
+            for i in range(k):
+                quadrante_sudoku = []
+                for j in range(y,y+3):
+                    linha = tabuleiro[i][j]
+                    quadrante_sudoku.append(linha)
+
+            for i in range(k,k+1):
+                for j in range(y,y+3):
+                    linha = tabuleiro[i][j]
+                    quadrante_sudoku.append(linha)
+
+            for i in range(k+1,k+2):
+                for j in range(y,y+3):
+                    linha = tabuleiro[i][j]
+                    quadrante_sudoku.append(linha)
+
+
+            quadrante_linha = Ordena_linha(quadrante_sudoku)
+
+            if quadrante_linha != sequencia:
+                print(quadrante_sudoku)
+                print("Quadrante not ok")
+                sudoku_valido = False
+
+    if sudoku_valido == True:
+        print("Quadrantes Ok")
+
+    if sudoku_valido == False:
+        print("Sudoku Inválido")
+    else:
+        print("Sudoku Válido")
+
+def Ordena_linha(list):
+
+    str_lista = "".join(str(num) for num in list)
+    linha = str_lista.replace(" ", "").replace(",", "").replace("[", "").replace("]", "")
+    linha_ordenada = "".join(sorted(linha))
+
+    return linha_ordenada
+
+if __name__ == '__main__':
+    sudoku()
